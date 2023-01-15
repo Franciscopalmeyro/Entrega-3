@@ -1,17 +1,14 @@
 const formulario = document.getElementById('form');
-
 const nombre = document.getElementById('firstName');
 const apellido = document.getElementById('lastName');
 const email = document.getElementById('email');
 const monto = document.getElementById('amount');
 const cuotas = document.getElementById('fees');
-
 const montoFinal = document.getElementById('finalAmount');
 const cuotasFinales = document.getElementById('finalFees');
 const intereses = document.getElementById('interests');
 const totalADevolver = document.getElementById('totalAmount');
-
-const tasa = 0.076; 
+const tasa = 0.076;
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -19,13 +16,13 @@ formulario.addEventListener('submit', (e) => {
 });
 
 const calcularCuotaPrestamo = () => {
-    const cuotaPrestamo = tasa * monto.value / (1 - (1+tasa)**-cuotas.value);
+    const cuotaPrestamo = tasa * monto.value / (1 - (1 + tasa) ** -cuotas.value);
     calcularTotalPrestamo(cuotaPrestamo);
 };
 
 const calcularTotalPrestamo = (cuotaPrestamo) => {
     const total = Math.ceil(cuotaPrestamo) * cuotas.value;
-
+    
     const prestamo = construirPrestamo(monto.value, cuotas.value, total - monto.value, total);
 
     pintarPrestamo(prestamo)
